@@ -1,8 +1,8 @@
 /**************************************************************
-* Class::  CSC-415-0# Spring 2025
-* Name:: Robert Bierman
-* Student ID::  
-* GitHub Name:: bierman
+* Class::  CSC-415-01 Fall 2025
+* Name:: Will Young
+* Student ID::924230057
+* GitHub Name::Woyoung21
 * Project:: Assignment 2 – Buffer and Structures
 *
 * File:: assignment2.h
