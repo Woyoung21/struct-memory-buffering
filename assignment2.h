@@ -8,6 +8,7 @@
 * File:: assignment2.h
 *
 * Description:: To show how to use bitfields for assignment 2
+* This file was provided to us by the professor.
 *
 **************************************************************/
 #ifndef ASSIGNMENT2_H
