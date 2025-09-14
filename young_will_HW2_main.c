@@ -8,21 +8,21 @@
 * File:: will_young_HW2_main.c
 *
 * Description:: This assignment is to help us better understand
-* coding in C, working with structs, employing safe memory 
-* practices and continuing to develop our planning and 
-* debugging skills. We start by populating our struct using
-* safe memory practices with the requested data. The requested
-* message field is cut to fit into the hard coded memory 
-* allotment that is provided. We then write that data by calling
-* a prvoded function. We then create some logical
-* infrastructure to push an unkown amount of c-strings to the 
-* buffer, which we also created using safe memory practices.
-* When the buffer is full, it is committed and the process 
-* starts over again. Once we reach NULL, we break out of the
-* loop and commit whatever is left in buffer. We then call 
-* checkIT and deallocate the memory we created. Throughout the 
-* program, there are commented out debugging statements that 
-* were used to ensure the program is progressing as expected.
+*   coding in C, working with structs, employing safe memory 
+*   practices and continuing to develop our planning and 
+*   debugging skills. We start by populating our struct using
+*   safe memory practices with the requested data. The requested
+*   message field is cut to fit into the hard coded memory 
+*   allotment that is provided. We then write that data by calling
+*   a prvoded function. We then create some logical
+*   infrastructure to push an unkown amount of c-strings to the 
+*   buffer, which we also created using safe memory practices.
+*   When the buffer is full, it is committed and the process 
+*   starts over again. Once we reach NULL, we break out of the
+*   loop and commit whatever is left in buffer. We then call 
+*   checkIT and deallocate the memory we created. Throughout the 
+*   program, there are commented out debugging statements that 
+*   were used to ensure the program is progressing as expected.
 *
 **************************************************************/
 #include "assignment2.h"
@@ -63,6 +63,7 @@ int main(int argc, char * argv[]) {
     int sizeofMessageF = sizeof(newpInfo->message);
     int lenofMessageF = strlen(newpInfo->message);
 
+
     //debugging comments to test size and contents of message components
     //printf("\nSize of message field in argv[3]: %d\n", sizeofMessageA);
     //printf("\nSize of message field in struct: %d\n", sizeofMessageF);
@@ -77,6 +78,7 @@ int main(int argc, char * argv[]) {
     //message[100] field
     strncpy(newpInfo->message, argv[3], sizeofMessageF-1);
     newpInfo->message[99] = '\0';
+
 
     //This is strictly for debugging. Get new length of contents in 
     //message field after strncpy(), then show it's contents.
@@ -155,37 +157,42 @@ int main(int argc, char * argv[]) {
             memcpy(buffer + bufIndex, cString, remaining_buffSpace);
 
 
+            //debugging statements
             //printf("\n6.)Here is the buffIndex: %d during the first copy\n", bufIndex);
             //printf("\n7.)Here is the size of cString that was committed to the buff: %d during the first copy\n", committedCSString);
             //printf("\n8.)Here is the size of cString that is left: %d during the first copy\n", remainingCSString);
 
 
-            //commits the full buff
+            //commits the full buff, resets bufIndex and remaining_buffSpace
             commitBlock(buffer);
             bufIndex = 0;
             remaining_buffSpace = BLOCK_SIZE;
 
+            //debugging statements
             //printf("\n9.) Here is the new buffIndex: %d after the 1st commit\n", bufIndex);
             //printf("\n10.) Here is the remaining space in the buffer %d after the 1st commit\n", remaining_buffSpace);
 
 
-            //copies what was left of cString into buffer
+            //copies what was left of cString into buffer, increment bufIndex and decrement remaining_buffSpace
             memcpy(buffer + bufIndex, cString + committedCSString, remainingCSString);
             bufIndex = bufIndex + remainingCSString;
             remaining_buffSpace = BLOCK_SIZE - remainingCSString;
             
 
+            //debugging statements
             //printf("\n11.) Here is the new buffIndex: %d after the 2nd copy at the end of %d iteration\n", bufIndex, count);
             //printf("\n12.) Here is the remaining space in the buffer %d after the 2nd copy at the end of %d iteration\n", remaining_buffSpace, count);
             //printf("\n-----------------------------------------------------\n");
         }
         else {
 
+            //normal copy of cString to buffer, increment bufIndex and decrement remaining_buffSpace
             memcpy(buffer + bufIndex, cString, sizeCS);
             bufIndex = bufIndex + sizeCS;
             remaining_buffSpace = remaining_buffSpace - sizeCS;
             
             
+            //debugging statements
             //printf("\n4.) Here is the new buffIndex: %d at the end of %d iteration\n", bufIndex, count);
             //printf("\n5.) Here is the remaining space in the buffer %d at the end of %d iteration\n", remaining_buffSpace, count);
             //printf("\n-----------------------------------------------------\n");
@@ -195,6 +202,7 @@ int main(int argc, char * argv[]) {
         count++;
     }
 
+    //debugging statements
     //printf("\n*****************************************************\n");
     //printf("\nI finally hit NULL terminator and exited the while loop\n");
     //printf("\n*****************************************************\n");
