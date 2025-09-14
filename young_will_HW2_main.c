@@ -55,6 +55,8 @@ int main(int argc, char * argv[]) {
                         KNOWLEDGE_OF_HTML |
                         KNOWLEDGE_OF_ARM_ASSEMBLER;
 
+
+    //debugging variables
     //size of message in coming in from argv[3]
     //size of message[100] field of struct
     //size of contents of message[100]
@@ -144,6 +146,7 @@ int main(int argc, char * argv[]) {
         int sizeCS = strlen(cString);
         
 
+        //debugging statements
         //printf("\n1.) Starting buffIndex: %d during %d iterations\n", bufIndex, count);
         //printf("\n2.) Starting remaining_buffSpace: %d during %d iterations\n", remaining_buffSpace, count);
         //printf("\n3.) Current cString size: %d during %d iterations\n", sizeCS, count);
